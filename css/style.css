@@ -1,0 +1,56 @@
+:root {
+  --bg1: #0f172a; --bg2: #1e1b4b;
+  --glass: rgba(255,255,255,.07);
+  --text: #e2e8f0; --muted: #94a3b8;
+  --win: #22c55e; --lose: #ef4444; --draw: #eab308;
+  --accent: #818cf8;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  min-height: 100vh; display: grid; place-items: center;
+  font-family: system-ui, sans-serif; color: var(--text);
+  background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+}
+.app {
+  width: min(92vw, 480px); padding: 2rem 1.5rem; text-align: center;
+  background: var(--glass); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.12); border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+}
+h1 { font-size: 1.4rem; letter-spacing: .08em; margin-bottom: 1.5rem; }
+
+.scoreboard { display: flex; justify-content: space-around; margin-bottom: 1.5rem; }
+.score span { display: block; color: var(--muted); font-size: .8rem; text-transform: uppercase; }
+.score strong { font-size: 2.4rem; }
+
+.arena { display: flex; align-items: center; justify-content: space-around; margin-bottom: 1rem; }
+.hand { font-size: 4.5rem; transition: transform .2s; }
+.vs { color: var(--muted); font-weight: 700; }
+.hand.shake { animation: shake .5s ease; }
+@keyframes shake {
+  0%,100% { transform: translateY(0) rotate(0); }
+  25% { transform: translateY(-14px) rotate(-12deg); }
+  75% { transform: translateY(-14px) rotate(12deg); }
+}
+
+.result { min-height: 1.6rem; font-weight: 600; margin-bottom: 1.5rem; }
+.result.win { color: var(--win); }
+.result.lose { color: var(--lose); }
+.result.draw { color: var(--draw); }
+
+.choices { display: flex; gap: .8rem; justify-content: center; margin-bottom: 1.2rem; }
+.choice {
+  flex: 1; padding: 1rem .5rem; font-size: 2rem; cursor: pointer;
+  background: var(--glass); color: var(--text);
+  border: 1px solid rgba(255,255,255,.15); border-radius: 16px;
+  transition: transform .15s, border-color .15s, background .15s;
+}
+.choice span { display: block; font-size: .75rem; color: var(--muted); margin-top: .3rem; }
+.choice:hover { transform: translateY(-4px); border-color: var(--accent); background: rgba(129,140,248,.15); }
+.choice:active { transform: scale(.96); }
+.choice:disabled { opacity: .5; pointer-events: none; }
+
+.reset {
+  background: none; border: none; color: var(--muted);
+  cursor: pointer; text-decoration: underline; font-size: .85rem;
+}
